@@ -1,20 +1,21 @@
 // URL de l'api + recuperation de l'id
+//+declaration des variables
 let url = new URL(window.location.href)
 let idProduit = url.searchParams.get('id')
 let urlApi = 'http://localhost:3000/api/products/'+ idProduit
 let option = document.querySelector('option')
+let cart = []
 
+/*declaration des constantes pour la page production*/
 const imgKanap = document.getElementById('img-kanap')
 const title = document.getElementById('title')
 const price = document.getElementById('price')
 const description = document.getElementById('description')
 const colors = document.getElementById('colors')
-const boutons = document.getElementById('addToCart')
+const addToPanier = document.getElementById('addToCart')
 
 fetch(urlApi).then((Response) =>
     Response.json().then((data) => {
-        console.log(data);
-
         let prod = data;
 
         imgKanap.insertAdjacentHTML('beforeend',
@@ -30,10 +31,20 @@ fetch(urlApi).then((Response) =>
                 colors.insertAdjacentHTML("beforeend",
             `<option value="${idx}">${val}</option>`)})
 
-            boutons.addEventListener('click', addToCart)
-            function addToCart(){
-                boutons.insertAdjacentHTML('beforeend',
-                `<button id="addToCart">Ajouter au panier ${prod._id}</button>`
-                )}
+            addToPanier.addEventListener("click", function(){
+            let newArray = {"product" : prod, 
+                            color : document.getElementById('colors').value, 
+                            quantity : document.getElementById('quantity').value };
+            cart.push(newArray)
+
+            window.localStorage.setItem("cart",JSON.stringify(cart));
+
+            /*alert('??????')
+            if (alert === true) {
+
+            }*/
+        })
+           
+
         })
 )

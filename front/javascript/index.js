@@ -4,7 +4,6 @@ let affichageCards = document.getElementById(`items`)
 
 fetch(urlApi).then((Response) =>
     Response.json().then((data) => {
-        console.log(data);
         data.forEach(products => {
             affichageCards.classList.add('items');
             affichageCards.insertAdjacentHTML("beforeend",

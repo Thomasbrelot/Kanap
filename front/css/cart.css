@@ -35,6 +35,11 @@ h2 {
 	flex-direction: column;
 	justify-content: space-between;
 }
+.cart__item__content__description{
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+}
 .cart__item__content__titlePrice {
 	display: flex;
 	justify-content: space-between;
@@ -64,6 +69,9 @@ h2 {
 .cart__item__content__settings__quantity p {
 	margin-right: 10px;
 	display: flex;
+}
+.cart__item__content__settings__delete {
+    padding-top: 15px;
 }
 .cart__item__content__settings__delete p {
 	display: inline;
