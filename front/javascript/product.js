@@ -35,10 +35,10 @@ fetch(urlApi).then((Response) =>
       `<p id="description"> ${prod.description} </p>`
     );
 
-    prod.colors.forEach(function (val, idx) {
+    prod.colors.forEach(function (idx, color, val) {
       colors.insertAdjacentHTML(
         'beforeend',
-        `<option value="${idx}">${val}</option>`
+        `<option value="${val}">${color}</option>`
       );
     });
 
