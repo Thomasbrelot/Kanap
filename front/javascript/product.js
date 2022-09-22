@@ -35,7 +35,7 @@ fetch(urlApi).then((Response) =>
       `<p id="description"> ${prod.description} </p>`
     );
 
-    prod.colors.forEach(function (idx, color, val) {
+    prod.colors.forEach(function (color, val) {
       colors.insertAdjacentHTML(
         'beforeend',
         `<option value="${val}">${color}</option>`
@@ -48,6 +48,15 @@ fetch(urlApi).then((Response) =>
         color: document.getElementById('colors').value,
         quantity: document.getElementById('quantity').value,
       };
+      if (prod.color === undefined) {
+        alert(
+          "Veuillez ajouter une couleur et un nombre d'article à ajouter a votre panier. Merci"
+        );
+      } else {
+        alert(
+          'Bravo, votre article à bien été ajouté à votre panier, vous pouvez dès à présent la consulter dans la page panier. Félicitations'
+        );
+      }
       cart.push(newArray);
 
       window.localStorage.setItem('cart', JSON.stringify(cart));

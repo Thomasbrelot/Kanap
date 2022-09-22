@@ -12,6 +12,7 @@ for (let i = 0; i < cart.length; i++) {
   cart[i];
 
   let product = cart[i].product;
+  let color = cart[i].color;
 
   affichageCart.classList.add('cart__item');
   affichageCart.insertAdjacentHTML(
@@ -24,7 +25,7 @@ for (let i = 0; i < cart.length; i++) {
              <div class="cart__item__content">
                  <div class="cart__item__content__description">
                      <h2>${product.name}</h2>
-                     <p> Couleur : ${cart[i].color}</p>
+                     <p> Couleur : ${product.colors[color]}</p>
                      <p>${product.price} €</p>
                  </div>
 
