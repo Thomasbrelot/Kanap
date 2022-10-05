@@ -1,11 +1,3 @@
-// URL de l'api + recuperation de l'id
-//+declaration des variables
-let url = new URL(window.location.href);
-let idProduit = url.searchParams.get('id');
-let urlApi = 'http://localhost:3000/api/products/' + idProduit;
-let option = document.querySelector('option');
-let cart = [];
-
 /*declaration des constantes pour la page production*/
 const imgKanap = document.getElementById('img-kanap');
 const title = document.getElementById('title');
@@ -13,6 +5,14 @@ const price = document.getElementById('price');
 const description = document.getElementById('description');
 const colors = document.getElementById('colors');
 const addToPanier = document.getElementById('addToCart');
+
+// URL de l'api + recuperation de l'id
+//+declaration des variables
+let url = new URL(window.location.href);
+let idProduit = url.searchParams.get('id');
+let urlApi = 'http://localhost:3000/api/products/' + idProduit;
+let option = document.querySelector('option');
+let cart = [];
 
 fetch(urlApi).then((Response) =>
   Response.json().then((data) => {
@@ -43,24 +43,50 @@ fetch(urlApi).then((Response) =>
     });
 
     addToPanier.addEventListener('click', function () {
-      let newArray = {
+      //récupération de la valeur choisi par l'utilisateur.
+      let newObject = {
         product: prod,
         color: document.getElementById('colors').value,
         quantity: document.getElementById('quantity').value,
-      };
-      if (prod.color === undefined) {
+      }; //fin de la récupération.
+
+      // Message d'erreur champs non renseigner
+      let quantity = document.getElementById('quantity').value;
+      let colories = document.getElementById('colors').value;
+      if (colories == '') {
         alert(
-          "Veuillez ajouter une couleur et un nombre d'article à ajouter a votre panier. Merci"
-        );
-      } else {
-        alert(
-          'Bravo, votre article à bien été ajouté à votre panier, vous pouvez dès à présent la consulter dans la page panier. Félicitations'
+          'Veuillez choisir une couleur pour votre future canapé. Merci à vous.'
         );
       }
-      cart.push(newArray);
+      if (quantity == 0) {
+        alert(
+          "Veuillez choisir le nombre de canapé que vous souhaitez commandé pour votre plaisir pour pouvoir l'ajouter à  votre panier. ^^"
+        );
+      }
 
-      window.localStorage.setItem('cart', JSON.stringify(cart));
+      //function même couleur et même id alors on fait +1
+      function addToCart() {
+        let cart = localStorage.getItem();
+        if (cart == null) {
+          return [];
+        } else {
+          return JSON.parse(cart);
+        }
+        let foundProduct = cart
+          .from()
+          .find(
+            (prod) => prod.id === object.id && prod.colors === object.colors
+          );
+        if (cart && foundProduct) {
+          foundProduct.quantity += object.quantity;
+          localStorage.setItem('cart', JSON.stringify(cart));
+        } else {
+          cart.push(newObject);
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+      } // fin de la relecture*/
     });
+    //changement de la couleur du texte en vert
     addToPanier.addEventListener('click', (event) => {
       event.target.style.color = 'lightgreen';
     });

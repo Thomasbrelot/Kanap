@@ -10,14 +10,12 @@ const cart = JSON.parse(window.localStorage.getItem('cart'));
 
 for (let i = 0; i < cart.length; i++) {
   cart[i];
-
   let product = cart[i].product;
   let color = cart[i].color;
 
   affichageCart.classList.add('cart__item');
   affichageCart.insertAdjacentHTML(
     'beforeend',
-
     `   <article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
             <div class="cart__item__img">
                 <img class= "cart__item__img" src = "${product.imageUrl}" alt="${product.altTxt}">
@@ -42,21 +40,29 @@ for (let i = 0; i < cart.length; i++) {
         </article>`
   );
 
+  // boutton de suppression pour supprimer l'article
   let deleteObject = document.getElementById('deleteObject');
   deleteObject.addEventListener('click', function () {
     localStorage.removeItem('cart');
     location.reload('cart');
   });
 
-  /*  cart.forEach(function () {
-    cart[i];
-  });
+  function verification() {
+    if (document.getElementById('firstName') == '') {
+      alert('Veuillez entre votre prénom pour continuer!');
+      return false;
+    }
+  }
 
-  cart.forEach(function () {
-    cart[i].product.price
-  })
+  /*modification "change" pour le nombre d'article*/
+  /* addToPanier.addEventListener('change', function () {
 
-  for (const {} in cart[i]) {
-    totalQuantity
-  }*/
+  });*/
+
+  this.getPrixPanier = function () {
+    var total = 0;
+    for (var i = 0; i < this.liste.length; i++)
+      total += this.liste[i].getPrixLigne();
+    return total;
+  };
 }
