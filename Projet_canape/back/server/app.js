@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { route } from './routers/main.router.js';
+import { route } from '../routers/main.router.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,8 +11,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Chemin absolu vers le dossier front/views
-const viewsPath = path.join(__dirname, '../front/views');
-const publicPath = path.join(__dirname, '../front/public');
+const viewsPath = path.join(__dirname, '../../front/views');
+const publicPath = path.join(__dirname, '../../front/public');
 app.use(express.static(publicPath));
 app.use(express.static('public'));
 

@@ -1,4 +1,6 @@
+# Ignorer les fichiers sensibles
 .env
 .DS_Store
 node_modules/
 dist/
+    
