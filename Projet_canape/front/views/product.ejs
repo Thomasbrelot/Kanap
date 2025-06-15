@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>
+        <%= product.name %> 🛋️
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Plateforme incroyable de e-commerce">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/product.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <%- include('components/header') %>
+
+        <main class="limitedWidthBlockContainer">
+            <div class="limitedWidthBlock">
+                <section class="products-grid">
+                    <article class="item">
+                        <div class="item__img">
+                            <img src="<%= product.imageUrl %>" alt="<%= product.altTxt %>">
+                        </div>
+                        <div class="item__content">
+                            <div class="item__content__titlePrice">
+                                <h1>
+                                    <%= product.name %>
+                                </h1>
+                                <p>Prix : <span>
+                                        <%= product.price %>
+                                    </span>€</p>
+                            </div>
+
+                            <div class="item__content__description">
+                                <p class="item__content__description__title">Description :</p>
+                                <p>
+                                    <%= product.description %>
+                                </p>
+                            </div>
+
+                            <div class="item__content__settings">
+                                <div class="item__content__settings__color">
+                                    <label for="color-select">Choisir une couleur :</label>
+                                    <select name="color-select">
+                                        <option value="">--SVP, choisissez une couleur --</option>
+                                        <% if (product.colors) { %>
+                                            <% product.colors.forEach(color=> { %>
+                                                <option value="<%= color %>">
+                                                    <%= color %>
+                                                </option>
+                                                <% }) %>
+                                                    <% } %>
+                                    </select>
+                                </div>
+
+                                <div class="item__content__settings__quantity">
+                                    <label for="itemQuantity">Nombre d'article(s) (1-100) :</label>
+                                    <input type="number" name="itemQuantity" min="1" max="100" value="1">
+                                </div>
+                            </div>
+
+                            <div class="item__content__addButton">
+                                <button class="btn">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </section>
+            </div>
+        </main>
+
+        <%- include('components/footer') %>
+
+</body>
+
+</html>

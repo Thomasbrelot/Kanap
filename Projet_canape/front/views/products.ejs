@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Notre Catalogue</title>
+
+  <meta charset="utf-8">
+  <meta name="description" content="Plateforme incroyable de e-commerce">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet" />
+  <link href="../css/products.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <%- include('components/header') %>
+
+    <main class="limitedWidthBlockContainer">
+      <div class="limitedWidthBlock">
+        <section class="products-grid">
+          <% products.forEach(product=> { %>
+            <article class="item">
+              <a href="/product/<%= product.id %>">
+                <div class="item__img">
+                  <img
+                    src="<%= product.imageUrl.startsWith('http') ? product.imageUrl : '/images/' + product.imageUrl %>"
+                    alt="<%= product.altTxt %>">
+                </div>
+                <div class="item__content">
+                  <div class="item__content__titlePrice">
+                    <h1>
+                      <%= product.name %>
+                    </h1>
+                    <p>Prix : <span>
+                        <%= product.price %>
+                      </span>€</p>
+                  </div>
+
+                  <div class="item__content__description">
+                    <p class="item__content__description__title">Description :</p>
+                    <p>
+                      <%= product.description %>
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div class="item__content__addButton">
+                <button class="btn">Ajouter au panier</button>
+              </div>
+            </article>
+            <% }) %>
+        </section>
+      </div>
+    </main>
+
+    <%- include('components/footer') %>
+      <script src="../javascript/product.js"></script>
+</body>
+
+</html>

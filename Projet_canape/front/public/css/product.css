@@ -1,0 +1,164 @@
+/**********************/
+/* PRODUIT - PAGE DÉTAIL */
+/**********************/
+
+/* Conteneur principal */
+.products-grid {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Titre principal */
+h1 {
+  margin-top: 30px;
+}
+
+/* Carte produit */
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--secondary-color, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Image produit */
+.item__img img {
+  width: 75%;
+  height: auto;
+  object-fit: cover;
+  margin: 2rem auto 0;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Contenu de la carte */
+.item__content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Titre + Prix */
+.item__content__titlePrice h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.item__content__titlePrice p {
+  font-size: 1.6rem;
+}
+
+/* Description */
+.item__content__description__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.item__content__description p:last-child {
+  line-height: 1.6;
+}
+
+/* Options : couleur, quantité */
+.item__content__settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.item__content__settings__color,
+.item__content__settings__quantity {
+  flex: 1;
+  min-width: 200px;
+}
+
+select,
+input[type='number'] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Bouton "Ajouter au panier" */
+.item__content__addButton {
+  margin-top: 10px;
+}
+
+.item__content__addButton button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+/******************/
+/* BOUTON ANIMÉ   */
+/******************/
+
+.btn {
+  --hover-bg: #3498db;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 1s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0%;
+  height: 0%;
+  background: var(--hover-bg);
+  transform: translate(-50%, -50%);
+  transition: width 1.4s ease, height 400ms ease;
+  border-radius: 100%;
+  z-index: -1;
+}
+
+.btn:hover::before,
+.btn:focus::before {
+  width: 250%;
+  height: 250%;
+}
+
+.btn:hover,
+.btn:focus {
+  color: white;
+}
+
+/****************/
+/* RESPONSIVE   */
+/****************/
+
+@media (max-width: 600px) {
+  .item__content {
+    padding: 1rem;
+  }
+
+  .item__content__titlePrice h1 {
+    font-size: 1.5rem;
+  }
+
+  .item__content__addButton .btn {
+    width: 100%;
+  }
+}
