@@ -50,8 +50,8 @@
 
                             <div class="item__content__settings">
                                 <div class="item__content__settings__color">
-                                    <label for="color-select">Choisir une couleur :</label>
-                                    <select name="color-select">
+                                    <label for="colors">Choisir une couleur :</label>
+                                    <select name="colors" id="colors">
                                         <option value="">--SVP, choisissez une couleur --</option>
                                         <% if (product.colors) { %>
                                             <% product.colors.forEach(color=> { %>
@@ -64,13 +64,13 @@
                                 </div>
 
                                 <div class="item__content__settings__quantity">
-                                    <label for="itemQuantity">Nombre d'article(s) (1-100) :</label>
-                                    <input type="number" name="itemQuantity" min="1" max="100" value="1">
+                                    <label for="quantity">Nombre d'article(s) (1-100) :</label>
+                                    <input type="number" name="quantity" id="quantity" min="1" max="100" value="1">
                                 </div>
                             </div>
 
                             <div class="item__content__addButton">
-                                <button class="btn">Ajouter au panier</button>
+                                <button id="addToCart" class="btn">Ajouter au panier</button>
                             </div>
                         </div>
                     </article>
@@ -80,7 +80,7 @@
         </main>
 
         <%- include('components/footer') %>
-
+            <script src="/javascript/product.js"></script>
 </body>
 
 </html>

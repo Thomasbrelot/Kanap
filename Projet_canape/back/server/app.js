@@ -13,6 +13,7 @@ const __dirname = path.dirname(__filename);
 // Chemin absolu vers le dossier front/views
 const viewsPath = path.join(__dirname, '../../front/views');
 const publicPath = path.join(__dirname, '../../front/public');
+
 app.use(express.static(publicPath));
 app.use(express.static('public'));
 
