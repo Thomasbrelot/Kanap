@@ -4,6 +4,8 @@ import { homePage } from '../controllers/homePage.js';
 import { cart } from '../controllers/cart.js';
 import { getAllProducts } from '../controllers/products.js';
 import { getOneProduct } from '../controllers/product.js';
+import { errorHandler } from '../middleware/errorHandler.js';
+import { errorNotFound } from '../middleware/errorNotFound.js';
 
 export const route = Router();
 
@@ -19,3 +21,9 @@ route.get('/cart', cart);
 route.get('/products', getAllProducts);
 // route pour afficher la page d'un canapé
 route.get('/product/:id', getOneProduct);
+
+// Middleware pour gérer les erreurs 404
+route.use(errorNotFound);
+
+// Middleware pour gérer les erreurs
+route.use(errorHandler);

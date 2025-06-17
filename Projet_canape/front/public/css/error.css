@@ -1,0 +1,54 @@
+.error-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.error-page-content {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 60px 80px; /* Plus d’espace autour */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+  max-width: 700px; /* Plus large */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement */
+  align-items: center; /* Centre horizontalement */
+  text-align: center;
+  min-height: 300px; /* Pour que la boîte ait une hauteur minimum */
+}
+
+.error-message .error-code {
+  font-size: 4rem;
+  color: #e74c3c;
+  margin-top: 0;
+  margin-bottom: 4rem;
+}
+
+.error-message .error-text {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  color: #000;
+  font-weight: bold;
+}
+
+.error-message .error-link {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #3498db;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.error-message .error-link:hover {
+  background-color: #2980b9;
+}

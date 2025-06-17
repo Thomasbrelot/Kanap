@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Kanap</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Plateforme incroyable de e-commerce">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/error.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <%- include ('components/header') %>
+
+        <main class="error-page-container">
+            <div class="error-page-content">
+                <section class="error-message">
+                    <h1 class="error-code">Erreur <%= statusCode %>
+                    </h1>
+                    <p class="error-text">
+                        <%= message %>
+                    </p>
+                    <a href="/" class="error-link">← Retour à l'accueil</a>
+                </section>
+            </div>
+        </main>
+
+
+        <%- include ('components/footer') %>
+</body>
+
+</html>

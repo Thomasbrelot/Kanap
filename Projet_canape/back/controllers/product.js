@@ -3,14 +3,15 @@ import pkg from 'uuid';
 const { v4: uuid } = pkg;
 
 // GET: Un seul produit par ID
-export const getOneProduct = async (req, res) => {
+export const getOneProduct = async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
 
     if (!product) {
-      return res.status(404).render('error', {
-        message: 'Produit introuvable !',
-      });
+      // Crée une erreur 404 et la passe au middleware d’erreur
+      const error = new Error('Produit introuvable !');
+      error.status = 404;
+      return next(error);
     }
 
     const host = `${req.protocol}://${req.get('host')}`;
@@ -21,15 +22,13 @@ export const getOneProduct = async (req, res) => {
 
     res.render('product', { product: mappedProduct });
   } catch (error) {
-    console.error('Erreur lors de la récupération du produit :', error);
-    res.status(500).render('error', {
-      message: 'Erreur serveur lors de la récupération du produit.',
-    });
+    // Passe toute autre erreur au middleware d’erreur
+    next(error);
   }
 };
 
 // POST: Commande de produits
-export const orderProducts = async (req, res) => {
+export const orderProducts = async (req, res, next) => {
   const { contact, products } = req.body;
 
   // Vérification des champs obligatoires
@@ -43,7 +42,9 @@ export const orderProducts = async (req, res) => {
     !Array.isArray(products) ||
     products.length === 0
   ) {
-    return res.status(400).json({ error: 'Requête invalide' });
+    const error = new Error('Requête invalide');
+    error.status = 400;
+    return next(error);
   }
 
   try {
@@ -54,9 +55,9 @@ export const orderProducts = async (req, res) => {
 
     // Vérifie qu'ils existent tous
     if (foundProducts.some((p) => !p)) {
-      return res.status(404).json({
-        error: 'Un ou plusieurs produits sont introuvables.',
-      });
+      const error = new Error('Un ou plusieurs produits sont introuvables.');
+      error.status = 404;
+      return next(error);
     }
 
     const host = `${req.protocol}://${req.get('host')}`;
@@ -75,7 +76,6 @@ export const orderProducts = async (req, res) => {
       orderId,
     });
   } catch (error) {
-    console.error('Erreur lors du traitement de la commande :', error);
-    res.status(500).json({ error: 'Erreur serveur' });
+    next(error);
   }
 };

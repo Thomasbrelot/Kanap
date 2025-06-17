@@ -1,15 +1,11 @@
 import db from '../models/index.js';
-
 const { Product } = db;
 
-export const homePage = async (req, res) => {
+export const homePage = async (req, res, next) => {
   try {
     const products = await Product.findAll({ limit: 6 });
-    console.log(products);
-
     res.render('index', { products });
   } catch (error) {
-    console.error('Erreur lors de la récupération des produits :', error);
-    res.status(500).json({ error: 'Erreur serveur' });
+    next(error); // transmet l'erreur à errorHandler
   }
 };
